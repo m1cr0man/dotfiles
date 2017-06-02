@@ -1,0 +1,1 @@
+exec setxkbmap -layout ie -model acer_laptop
