@@ -1,0 +1,35 @@
+hosts:
+  - name: DryArch
+  - name: PoleStar
+  - name: Atomic-Suitcase
+folders:
+  - path: .local/bin
+    all:
+      - bin
+  - path: .config/systemd
+    all:
+      - systemd
+  - path: .config/nvim
+    all:
+      - nvim
+  - path: .config/m1cr0man
+    all:
+      - m1cr0man
+files:
+  - path: .config/sway/config
+    all:
+      - all_wm/config
+      - all_wm/config_sway
+    DryArch:
+      - all_wm/config_DryArch
+    PoleStar:
+      - all_wm/config_PoleStar
+
+  - path: .config/i3/config
+    all:
+      - all_wm/config
+      - all_wm/config_i3
+    DryArch:
+      - all_wm/config_DryArch
+    PoleStar:
+      - all_wm/config_PoleStar

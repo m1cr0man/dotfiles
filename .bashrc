@@ -22,7 +22,6 @@ source /usr/share/git/completion/git-completion.bash
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # Aliases
-alias sshtoodle='ssh -C2qTnN -D 8080 m1cr0man@redbrick.dcu.ie'
 alias mymount='sudo mount -o uid=1000,gid=1000'
 alias sshm1='ssh -p 6416 m1cr0man@m1cr0man.com'
 alias sship='ssh -i ~/.ssh/id_rsa_irishpressings -L 27017:127.0.0.1:27017 git@172.16.1.122'
@@ -43,8 +42,7 @@ export TMBGD='colour234'
 export TMBGL='colour239'
 
 # LS Colours
-eval $(dircolors -b "$HOME/.config/sway/Atomic-Suitcase/LS_COLORS.txt")
+eval $(dircolors -b "$HOME/.config/m1cr0man/LS_COLOURS")
 
 # TMux
 [[ $TERM == 'rxvt'* ]] && exec tmux
-

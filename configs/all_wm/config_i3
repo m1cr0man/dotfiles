@@ -1,0 +1,33 @@
+#
+# i3 Bindings
+#
+
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+#
+# i3 Styling
+#
+
+## Set global font for window borders
+font pango:TamzenForPowerline 8
+
+## i3bar
+bar {
+	status_command python /home/lucas/.config/m1cr0man/statusbar.py
+	font pango:TamzenForPowerline 14px
+	position top
+	colors {
+		background #090909
+		focused_workspace #074E2C #02150C #ACBAB3
+	}
+	height 16
+}
+
+#
+# i3 Other
+#
+
+## Set wallpaper
+exec python /home/lucas/.config/m1cr0man/set_bg.py i3
+

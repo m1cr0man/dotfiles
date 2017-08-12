@@ -1,0 +1,6 @@
+#
+# DryArch Other
+#
+
+## Input
+exec setxkbmap -layout ie -model thinkpad

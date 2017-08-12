@@ -1,0 +1,56 @@
+#
+# Sway Bindings
+#
+
+## Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+## Cycle scratchpad windows
+bindsym $mod+minus scratchpad show
+
+#
+# Sway Styling
+#
+
+## swaybar
+bar {
+	status_command python /home/lucas/.config/sway/Atomic-Suitcase/statusbar.py
+	font Tamzen For Powerline 14px
+	position top
+	height 16px
+	colors {
+		background #090909
+		focused_workspace #074E2C #02150C #ACBAB3
+	}
+}
+
+## Layout
+smart_gaps off
+
+#
+# Sway Other
+#
+
+## Configure output
+#output VGA-1 resolution 1440x900 position 0,0
+#output LVDS-1 position 0,0
+output eDP-1 position 0,0
+#output VGA-1 resolution 1024x768 position -1024,0
+#output HDMI-1 resolution 1920x1080 position 1920,0
+#output LVDS-1 position 277,1080
+
+## Configure input
+input 2:7:SynPS\/2_Synaptics_TouchPad {
+	tap disabled
+	dwt enabled
+	scroll_method edge
+}
+
+## Load X11 config
+exec xrdb ~/.Xresources
+
+## Set wallpaper
+exec python /home/lucas/.config/m1cr0man/set_bg.py sway
+
+## New security feature
+include /etc/sway/config.d/*

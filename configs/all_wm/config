@@ -1,26 +1,29 @@
-### Variables
+#
+# Variables
+#
 
-# Modifier key
+## Modifier key
 set $mod Mod4
 
-# Terminal
+## Terminal
 set $term urxvt
 
-# Launcher
+## Launcher
 set $launcher dmenu_run
 
-# Browser
+## Browser
 set $browser opera
 
+#
+# Bindings
+#
 
-### Bindings
-
-# Volume control
+## Volume control
 bindsym XF86AudioRaiseVolume exec amixer set Master playback 1+
 bindsym XF86AudioLowerVolume exec amixer set Master playback 1-
 bindsym XF86AudioMute exec amixer set Master toggle
 
-# Brightness fine control
+## Brightness fine control
 bindsym Control+Alt+left exec light -U 2
 bindsym Control+Alt+right exec light -A 2
 
@@ -93,3 +96,14 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+
+#
+# Syling
+#
+
+## Layout
+gaps inner 8
+gaps outer 0
+for_window [class=".*"] border pixel 3
+for_window [title=".*gpicview.*"] border normal 3
+client.focused #074E2C #074E2C #FFFFFF #074E2C #074E2C
