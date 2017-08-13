@@ -14,8 +14,7 @@ cp .tmux.conf ~/.tmux.conf
 
 # Clone repos for plugins
 mkdir -p ~/.config/.tmux/plugins
-ln -s ~/.config/.tmux ~/tmux
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
 echo "Done! Notes:"
 echo " - Run 'PlugInstall' from vim to setup plugins"
