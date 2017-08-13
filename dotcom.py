@@ -2,6 +2,7 @@ from os import chdir, path, listdir, makedirs, unlink, walk
 from os.path import join as j
 from subprocess import check_output
 from sys import argv
+from time import sleep
 from shutil import rmtree, copy2
 from tempfile import mkdtemp
 from yaml import load
@@ -26,28 +27,29 @@ def setup_git():
     return (wrapped_git, repo_dir)
 
 def get_parts(item, hostname):
-    parts = item['all'] if 'all' in item else []
+    parts = list(item['all']) if 'all' in item else []
     parts += item[hostname] if hostname in item else []
     return parts
 
 def create_host_branch(git, repo_dir, hostname):
     branches = [x.lstrip('* ') for x in git('branch -a')]
+
     # Create empty branch if necessary
-    if hostname not in branches:
+    if 'remotes/origin/' + hostname not in branches:
         git('checkout --orphan "%s"' % hostname)
         git('reset -- *')
     else:
-        git('checkout "%s"' % hostname)
+        git('checkout --track "origin/%s"' % hostname)
 
-        # Remove everything - it will all be recreated
-        for item in listdir(repo_dir):
-            abs_path = j(repo_dir, item)
-            if item == '.git':
-                continue
-            if path.isdir(abs_path):
-                rmtree(abs_path)
-            else:
-                unlink(abs_path)
+    # Remove everything - it will all be recreated
+    for item in listdir(repo_dir):
+        abs_path = j(repo_dir, item)
+        if item == '.git':
+            continue
+        if path.isdir(abs_path):
+            rmtree(abs_path)
+        else:
+            unlink(abs_path)
 
 def assemble_host(git, repo_dir, host, files, folders):
     hostname = host['name']
@@ -59,8 +61,7 @@ def assemble_host(git, repo_dir, host, files, folders):
     # Copy the folders
     folder_files = []
     for folder in folders:
-        dest_dir = j(repo_dir, folder['path'])
-        makedirs(dest_dir, exist_ok=True)
+        print('\t', folder['path'])
 
         # Has to be done manually because we need to add files
         # to the gitignore
@@ -68,29 +69,30 @@ def assemble_host(git, repo_dir, host, files, folders):
             for cwd, _, w_files in walk(part):
                 for file in w_files:
                     src_path = j(cwd, file)
-                    print('\t', src_path)
-                    dest_path = j(dest_dir, path.relpath(part, cwd), file)
-                    copy2(src_path, dest_path)
-                folder_files += [{'path': x} for x in w_files]
+                    print('\t\t', src_path)
+                    dest_dir = j(repo_dir, folder['path'], path.relpath(cwd, part))
+                    makedirs(dest_dir, exist_ok=True)
+                    copy2(src_path, j(dest_dir, file))
+                    folder_files.append({
+                        'path': j(path.relpath(dest_dir, repo_dir), file)
+                    })
 
     # Compile the files
     for file in files:
+        print('\t', file['path'])
 
         # Set up the assembled file
-        print(file)
-        dirname = path.dirname(file['path'])
-        dest_dir = j(repo_dir, dirname)
-        makedirs(dest_dir, exist_ok=True)
+        makedirs(j(repo_dir, path.dirname(file['path'])), exist_ok=True)
 
         with open(j(repo_dir, file['path']), 'wb') as assy_f:
 
             # Build the file
             for part in get_parts(file, hostname):
-                print('\t', part)
+                print('\t\t', part)
                 try:
                     with open(part, 'rb') as part_f:
                         assy_f.write(part_f.read())
-                    assy_f.write('\n')
+                    assy_f.write(b'\n')
                 except:
                     print('Failed to open/read', part)
 
@@ -102,7 +104,10 @@ def assemble_host(git, repo_dir, host, files, folders):
 
     # Create a commit
     git('add -A')
-    git('commit -m "Updated with DotCom"')
+    try:
+        git('commit -m "Updated with DotCom"')
+    except:
+        print('NOTICE: No changes on host', hostname)
     git('checkout master')
 
 def main():
@@ -116,7 +121,17 @@ def main():
     for host in config['hosts']:
         assemble_host(git, repo_dir, host, config['files'], config['folders'])
 
-    print('Done! You must git push manually now')
+    print('Repo updated in', repo_dir)
+    save = input('Do you want to push the changes? y/[n]')
+
+    if save.lower() == 'y':
+        print('Pushing')
+        git('push --all -u')
+
+    print('Deleting temporary repo')
+    rmtree(repo_dir)
+
+    print('Done!')
 
 if __name__ == '__main__':
     main()

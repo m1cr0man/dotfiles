@@ -33,3 +33,19 @@ files:
       - all_wm/config_DryArch
     PoleStar:
       - all_wm/config_PoleStar
+
+  - path: .Xresources
+    all:
+      - .Xresources
+  - path: .xinitrc
+    all:
+      - .xinitrc
+  - path: .bash_profile
+    all:
+      - .bash_profile
+  - path: .bashrc
+    all:
+      - .bashrc
+  - path: .tmux.conf
+    all:
+      - .tmux.conf
