@@ -11,7 +11,8 @@ exitcolour() {
 	exit $1
 }
 
-PS1="\[\e[48;5;\$(exitcolour \$?)m\]\$? \[\e[38;5;\$(exitcolour \$?)m\e[48;5;239m\]\[\e[38;5;255m\] \W \[\e[0m\e[38;5;239m\]\$(tput sgr0) "
+#PS1="\[\e[48;5;\$(exitcolour \$?)m\]\$? \[\e[38;5;\$(exitcolour \$?)m\e[48;5;239m\]\[\e[38;5;255m\] \W \[\e[0m\e[38;5;239m\]\$(tput sgr0) "
+PS1='$?|\W> '
 
 export PATH=~/.local/bin:$PATH
 
