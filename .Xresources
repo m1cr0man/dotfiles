@@ -1,0 +1,82 @@
+! Appearance
+URxvt.depth: 32
+URxvt.background: [85]#0C1411
+URxvt.foreground: [100]#ffffff
+URxvt.font: -*-tamzenforpowerline-medium-r-*-*-14-*-*-*-*-*-*-*
+URxvt.boldFont: -*-tamzenforpowerline-bold-r-*-*-14-*-*-*-*-*-*
+URxvt.internalBorder: 0
+URxvt.borderless: true
+URxvt*scrollBar: false
+URxvt*skipBuiltinGlyphs: false
+URxvt*mouseWheelScrollPage: true
+
+! Extensions
+URxvt*perl-ext-common: default,matcher,selection-to-clipboard
+
+! "Normal" scrolling
+! Not used with TMux
+!URxvt*scrollTtyOutput: false
+!URxvt*scrollWithBuffer: true
+!URxvt*scrollTtyKeypress: true
+!URxvt.scrollstyle: plain
+!URxvt.secondaryScroll: true
+
+! TMux scrolling
+URxvt*saveLines: 0
+
+! URL Matching
+URxvt.matcher.button: 1
+URxvt.url-launcher: opera
+
+! special
+*foreground:#c9dece
+
+! black
+*color0:	#090f09
+
+! bright_black
+*color8:	#1f2520
+
+! red
+*color1:	#955b3a
+
+! bright_red
+*color9:	#c68967
+
+! green
+*color2:	#3a9b55
+
+! bright_green
+*color10:	#67cb83
+
+! yellow
+*color3:	#799b3a
+
+! bright_yellow
+*color11:	#a9cb67
+
+! blue
+*color4:	#553f95
+
+! bright_blue
+*color12:	#836dc6
+
+! magenta
+*color5:	#953f7a
+
+! bright_magenta
+*color13:	#c66daa
+
+! cyan
+*color6:	#3a7f95
+
+! bright_cyan
+*color14:	#67afc6
+
+! white
+*color7:	#b8beb9
+
+! bright_white
+*color15:	#eaf0eb
+
+

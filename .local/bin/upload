@@ -1,0 +1,9 @@
+#!/bin/bash
+token="da39a3ee5e6b4b0d3255bfef95601890afd80709"
+server="http://u.m1cr0man.com"
+#server="http://localhost:3000/uploads"
+result=`curl -i -F token="$token" -F "file=@$1" $server | grep -Eo '^[[:alnum:]]+ [[:alnum:]]+$'`
+shorturl=$(echo $result | grep -Eo '^[[:alnum:]]+')
+echo $server/$shorturl
+echo $server/$shorturl/delete/$(echo $result | grep -Eo '[[:alnum:]]+$')
+

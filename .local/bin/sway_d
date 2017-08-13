@@ -1,0 +1,3 @@
+date=$(date +'%H_%M__%d_%m_%Y')
+mkdir -p ~/sway_logs
+sway -d 2>~/sway_logs/$date.log
