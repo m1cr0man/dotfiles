@@ -14,7 +14,7 @@ bindsym $mod+minus scratchpad show
 
 ## swaybar
 bar {
-	status_command python /home/lucas/.config/sway/Atomic-Suitcase/statusbar.py
+	status_command python /home/lucas/.config/m1cr0man/statusbar.py
 	font Tamzen For Powerline 14px
 	position top
 	height 16px
