@@ -32,19 +32,27 @@ def get_battery_stats(default_colour):
     batteries = [battery_path + f for f in os.listdir(battery_path) if "BAT" in f and not os.path.isfile(battery_path + f)]
 
     for battery in batteries:
-        charge_max = int(read_file(battery + "/charge_full"))
-        charge_current = int(read_file(battery + "/charge_now"))
-        charge_percent = charge_current * 100 / charge_max;
         status = read_file(battery + "/status")
+        if status == 'Unknown':
+            continue
+        keyword = 'charge'
+        if os.path.exists(battery + "/energy_full"):
+            keyword = 'energy'
+        charge_max = int(read_file(battery + "/%s_full" % keyword))
+        charge_current = int(read_file(battery + "/%s_now" % keyword))
+        charge_percent = charge_current * 100 / charge_max;
         return ((u"\uf242" if status == "Discharging" else u"\uf1e6"), ("{:0>4.1f}%").format(charge_percent), charge_percent > 5 and default_colour or '#FF0000')
 
 def get_network_status():
-    cmd = subprocess.run("iw dev wlo1 link | grep -Po '(?<=SSID\: ).*'", shell=True, stdout=subprocess.PIPE)
+    devname = subprocess.run("cat /proc/net/wireless | grep -Po '^w[^:]+'", shell=True, stdout=subprocess.PIPE).stdout.strip().decode()
+    cmd = subprocess.run("iw dev %s link | grep -Po '(?<=SSID\: ).*'" % devname, shell=True, stdout=subprocess.PIPE)
     connection = str(cmd.stdout.strip().strip())[2:-1]
     return (u"\uf1eb", connection) if connection else (u"\uf127", "None")
 
 def get_sound_status():
     cmd = subprocess.run("amixer sget Master | grep -Eo [[:digit:]]+%\|\[o[n\|f]+\]", shell=True, stdout=subprocess.PIPE)
+    if cmd.returncode:
+        return (u"\uf026", "00%")
     data = [l.strip() for l in str(cmd.stdout.strip())[2:-1].split("\\n")]
     return ((u"\uf026" if data[0] == "0%" or data[1] == "[off]" else u"\uf028"), "{:0>3}".format(data[0]))
 

@@ -31,7 +31,6 @@ alias ls='ls --color=auto'
 alias l='ls'
 alias c='cd'
 alias exporteslint='export PATH=$PATH:/home/lucas/Github/vacation/client/node_modules/.bin'
-alias ssh-add-github='ssh-add /home/lucas/.ssh/id_rsa_github'
 alias chkgpu='sudo cat /sys/kernel/debug/vgaswitcheroo/switch'
 
 # My Colours
