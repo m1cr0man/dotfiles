@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+
+import os, sys, urllib.request
+from subprocess import run, PIPE
+from json import loads
+
+URL = 'http://m1cr0man.com/backgrounds?token=' + os.environ['BLOGTOKEN']
+FORCE_URL = URL.replace('?', '/force?')
+SAVE_FILE = '/home/lucas/.cache/bg'
+
+def set_bg():
+    new_bg = SAVE_FILE.replace(' ', r'\ ').replace('\'', '\\\'')
+    if sys.argv[1] == 'sway':
+        displays = loads(run('swaymsg -r -t get_outputs', shell=True, stdout=PIPE).stdout)
+        for display in displays:
+            run('sway output %s bg "%s" fill' % (display['name'], new_bg), shell=True)
+    else:
+        run('feh --bg-fill %s' % (new_bg), shell=True)
+
+def main():
+    # Attempt to download the background
+    try:
+        etag = ''
+        if os.path.exists(SAVE_FILE + '_etag'):
+            with open(SAVE_FILE + '_etag', 'r') as etag_file:
+                etag = etag_file.read()
+
+        url = URL if len(sys.argv) < 3 or sys.argv[2] != '-f' else FORCE_URL
+
+        request = urllib.request.Request(url, headers={'If-None-Match': etag})
+        response = urllib.request.urlopen(request)
+
+        # Save this background to the save file
+        new_img = response.read()
+        with open(SAVE_FILE, 'wb') as save_file:
+            save_file.write(new_img)
+
+        # Save ETag for caching
+        new_etag = response.info()['ETag']
+        with open(SAVE_FILE + '_etag', 'w') as etag_file:
+            etag_file.write(new_etag)
+
+        print('New background downloaded')
+    except Exception as err:
+        print('Failed to download new background')
+        print(err)
+
+    set_bg()
+
+main()

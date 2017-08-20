@@ -124,7 +124,7 @@ bindsym $mod+minus scratchpad show
 
 ## swaybar
 bar {
-	status_command python /home/lucas/.config/m1cr0man/statusbar.py
+	status_command statusbar
 	font Tamzen For Powerline 14px
 	position top
 	height 16px
@@ -160,7 +160,7 @@ input 2:7:SynPS\/2_Synaptics_TouchPad {
 exec xrdb ~/.Xresources
 
 ## Set wallpaper
-exec python /home/lucas/.config/m1cr0man/set_bg.py sway
+exec set_bg sway
 
 ## New security feature
 include /etc/sway/config.d/*

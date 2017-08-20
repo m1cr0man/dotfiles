@@ -124,7 +124,7 @@ font pango:TamzenForPowerline 8
 
 ## i3bar
 bar {
-	status_command python /home/lucas/.config/m1cr0man/statusbar.py
+	status_command statusbar
 	font pango:TamzenForPowerline 14px
 	position top
 	colors {
@@ -139,7 +139,7 @@ bar {
 #
 
 ## Set wallpaper
-exec python /home/lucas/.config/m1cr0man/set_bg.py i3
+exec set_bg i3
 
 #
 # DryArch Other
