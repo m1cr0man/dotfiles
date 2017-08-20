@@ -112,6 +112,9 @@ client.focused #074E2C #074E2C #FFFFFF #074E2C #074E2C
 # Sway Bindings
 #
 
+# Lock screen
+bindsym $mod+l swaylock
+
 ## Move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
 
