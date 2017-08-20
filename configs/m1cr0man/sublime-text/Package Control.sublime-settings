@@ -1,0 +1,23 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"All Autocomplete",
+		"Better Completion",
+		"ComputerCraft Package",
+		"Diffy",
+		"EJS 2",
+		"Find++",
+		"Markdown Extended",
+		"Monokai Extended",
+		"Package Control",
+		"Package Syncing",
+		"Pretty JSON",
+		"Pylinter",
+		"SQF Language",
+		"TrailingSpaces"
+	]
+}
