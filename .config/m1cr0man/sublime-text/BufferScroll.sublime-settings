@@ -1,0 +1,26 @@
+{
+	"i_use_cloned_views": false,
+	"max_database_records": 500,
+	"plain text":
+	{
+		"synch_scroll": true
+	},
+	"python":
+	{
+		"use_animations": false
+	},
+	"remember_color_scheme": false,
+	"remember_settings_list":
+	[
+		"spell_check"
+	],
+	"restore_scroll": false,
+	"synch_bookmarks": false,
+	"synch_folds": false,
+	"synch_marks": false,
+	"synch_scroll": false,
+	"typewriter_scrolling": false,
+	"typewriter_scrolling_follow_cursor_movement": true,
+	"use_animations": false,
+	"version": 7
+}
