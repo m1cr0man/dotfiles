@@ -45,7 +45,7 @@ export TMBGL='colour239'
 eval $(dircolors -b "$HOME/.config/m1cr0man/LS_COLOURS")
 
 # Secrets
-[[ -e ~/.secrets ]] && exec ~/.secrets
+[[ -e ~/.secrets ]] && . ~/.secrets
 
 # TMux
 [[ $TERM == 'rxvt'* ]] && exec tmux
