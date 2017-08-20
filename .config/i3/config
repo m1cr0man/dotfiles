@@ -148,6 +148,10 @@ exec set_bg i3
 # PoleStar Other
 #
 
+## Bindings
+bindsym XF86MonBrightnessDown exec light -U 10
+bindsym XF86MonBrightnessUp exec light -A 10
+
 ## Input
 exec setxkbmap -layout ie -model thinkpad
 

@@ -172,6 +172,10 @@ include /etc/sway/config.d/*
 # PoleStar Other
 #
 
+## Bindings
+bindsym XF86MonBrightnessDown exec light -U 10
+bindsym XF86MonBrightnessUp exec light -A 10
+
 ## Input
 exec setxkbmap -layout ie -model thinkpad
 
