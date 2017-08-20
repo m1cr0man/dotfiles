@@ -2,6 +2,9 @@
 # Sway Bindings
 #
 
+# Lock screen
+bindsym $mod+l swaylock
+
 ## Move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
 

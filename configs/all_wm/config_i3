@@ -2,6 +2,9 @@
 # i3 Bindings
 #
 
+# Lock screen
+bindsym $mod+l i3lock
+
 # Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
