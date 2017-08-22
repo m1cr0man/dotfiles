@@ -1,0 +1,10 @@
+[Unit]
+Description=Dotfile Updater
+
+[Service]
+Type=oneshot
+WorkingDirectory=~
+ExecStart=/usr/bin/sh -c 'while ! /usr/bin/git pull; do sleep 5; done'
+
+[Install]
+WantedBy=default.target

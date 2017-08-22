@@ -1,7 +1,6 @@
 hosts:
   - name: DryArch
   - name: PoleStar
-  - name: Atomic-Suitcase
 folders:
   - path: .local/bin
     all:
