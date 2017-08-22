@@ -6,8 +6,6 @@ Requires=network-online.target
 Type=oneshot
 WorkingDirectory=~
 ExecStart=/usr/bin/git pull
-RestartSec=30
-Restart=on-failure
 
 [Install]
 WantedBy=default.target
