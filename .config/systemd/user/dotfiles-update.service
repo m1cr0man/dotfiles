@@ -1,0 +1,13 @@
+[Unit]
+Description=Dotfile Updater
+Requires=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=~
+ExecStart=/usr/bin/git pull
+RestartSec=30
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
