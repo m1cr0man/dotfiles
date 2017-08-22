@@ -1,11 +1,10 @@
 [Unit]
 Description=Dotfile Updater
-Requires=network-online.target
 
 [Service]
 Type=oneshot
 WorkingDirectory=~
-ExecStart=/usr/bin/git pull
+ExecStart=/usr/bin/sh -c 'while ! /usr/bin/git pull; do sleep 5; done'
 
 [Install]
 WantedBy=default.target
