@@ -32,6 +32,9 @@ alias l='ls'
 alias c='cd'
 alias exporteslint='export PATH=$PATH:/home/lucas/Github/vacation/client/node_modules/.bin'
 alias chkgpu='sudo cat /sys/kernel/debug/vgaswitcheroo/switch'
+alias py='python3'
+alias py3='python3'
+alias py2='python2.7'
 
 # My Colours
 export FG='#ACBAB3'
