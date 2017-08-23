@@ -3,7 +3,7 @@
 #
 
 # Lock screen
-bindsym $mod+l swaylock
+bindsym $mod+l exec swaylock --scaling fill -i ~/.cache/bg
 
 ## Move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
