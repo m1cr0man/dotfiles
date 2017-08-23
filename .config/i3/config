@@ -113,7 +113,7 @@ client.focused #074E2C #074E2C #FFFFFF #074E2C #074E2C
 #
 
 # Lock screen
-bindsym $mod+l i3lock
+bindsym $mod+l exec i3lock
 
 # Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
