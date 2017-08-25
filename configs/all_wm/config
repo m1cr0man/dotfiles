@@ -14,9 +14,42 @@ set $launcher dmenu_run
 ## Browser
 set $browser opera
 
+## Workspaces
+set $work1 "1 edit "
+set $work2 "2 web "
+set $work3 "3 term "
+set $work4 "4 term "
+set $work5 "5 chat "
+set $work6 "6 video "
+set $work7 "7 other "
+set $work8 "8 other "
+set $work9 "9 vpn "
+
 #
 # Bindings
 #
+
+## Change workspace
+bindsym $mod+1 workspace $work1
+bindsym $mod+2 workspace $work2
+bindsym $mod+3 workspace $work3
+bindsym $mod+4 workspace $work4
+bindsym $mod+5 workspace $work5
+bindsym $mod+6 workspace $work6
+bindsym $mod+7 workspace $work7
+bindsym $mod+8 workspace $work8
+bindsym $mod+9 workspace $work9
+
+## Move focused window to workspace
+bindsym $mod+Shift+1 move container to workspace $work1
+bindsym $mod+Shift+2 move container to workspace $work2
+bindsym $mod+Shift+3 move container to workspace $work3
+bindsym $mod+Shift+4 move container to workspace $work4
+bindsym $mod+Shift+5 move container to workspace $work5
+bindsym $mod+Shift+6 move container to workspace $work6
+bindsym $mod+Shift+7 move container to workspace $work7
+bindsym $mod+Shift+8 move container to workspace $work8
+bindsym $mod+Shift+9 move container to workspace $work9
 
 ## Volume control
 bindsym XF86AudioRaiseVolume exec amixer set Master playback 1+
@@ -27,75 +60,51 @@ bindsym XF86AudioMute exec amixer set Master toggle
 bindsym Control+Alt+left exec light -U 2
 bindsym Control+Alt+right exec light -A 2
 
-# Exit
+## Exit
 bindsym $mod+Shift+x exit
 
-# Reload the configuration file
+## Reload the configuration file
 bindsym $mod+Shift+c reload
 
-# Open terminal
-bindsym $mod+Return exec $term
+## Open terminal
+bindsym $mod+Return exec $term; workspace $work3
 
-# Open launcher
+## Open launcher
 bindsym $mod+d exec $launcher
 
-# Open browser
+## Open browser
 bindsym $mod+Backspace exec $browser
 
-# Kill focused window
+## Kill focused window
 bindsym $mod+Shift+q kill
 
-# Fullscreen
+## Fullscreen
 bindsym $mod+f fullscreen toggle
 
-# Toggle tiling / floating
+## Toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
-# Change focus between tiling / floating windows
+## Change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# Key to hold to move floating windows around
+## Key to hold to move floating windows around
 floating_modifier $mod
 
-# Change focus
+## Change focus
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# Move focused window
+## Move focused window
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# Multi-monitor
+## Multi-monitor
 bindsym $mod+q move workspace to output left
 bindsym $mod+e move workspace to output right
-
-# Switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
-
-# Move focused window to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
 
 #
 # Syling
@@ -107,3 +116,34 @@ gaps outer 0
 for_window [class=".*"] border pixel 3
 for_window [title=".*gpicview.*"] border normal 3
 client.focused #074E2C #074E2C #FFFFFF #074E2C #074E2C
+
+## Window workspace allocations
+assign [instance="subl3"] $work1
+assign [instance="Opera"] $work2
+assign [instance="urxvt"] $work3
+assign [instance="pulsevpn"] $work9
+
+## Floating generic
+for_window [window_type="menu"]        floating enable
+for_window [window_role="app"]         floating enable
+for_window [window_role="pop-up"]      floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_type="dialog"]      floating enable
+for_window [title="Preferences$"]      floating enable
+
+#
+# Senan's Modes
+#
+
+set $mode_system "System mode: [l]ock, [s]uspend, [r]eboot, shut[d]own"
+
+bindsym $mod+Shift+p mode $mode_system
+
+mode $mode_system {
+    bindsym l exec --no-startup-id $locker;                                           mode default
+    bindsym s exec --no-startup-id $locker; exec --no-startup-id systemctl suspend;   mode default
+    bindsym r exec --no-startup-id $locker; exec --no-startup-id systemctl reboot;    mode default
+    bindsym d exec --no-startup-id $locker; exec --no-startup-id systemctl poweroff;  mode default
+    bindsym Return mode default
+    bindsym Escape mode default
+}
