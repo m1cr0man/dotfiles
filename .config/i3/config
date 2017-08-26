@@ -1,4 +1,11 @@
 #
+# i3 Variables
+#
+
+## Lock screen
+set $locker i3lock
+
+#
 # Variables
 #
 
@@ -13,6 +20,9 @@ set $launcher dmenu_run
 
 ## Browser
 set $browser opera
+
+## Editor
+set $editor subl3
 
 ## Workspaces
 set $work1 "1 edit "
@@ -67,13 +77,20 @@ bindsym $mod+Shift+x exit
 bindsym $mod+Shift+c reload
 
 ## Open terminal
-bindsym $mod+Return exec $term; workspace $work3
+bindsym $mod+Return exec $term
 
 ## Open launcher
 bindsym $mod+d exec $launcher
 
 ## Open browser
 bindsym $mod+Backspace exec $browser
+bindsym XF86Search exec $browser https://www.google.ie/
+
+## Open editor
+bindsym $mod+equal exec $editor
+
+## Lock screen
+bindsym $mod+l exec $locker
 
 ## Kill focused window
 bindsym $mod+Shift+q kill
@@ -138,7 +155,7 @@ for_window [title="Preferences$"]      floating enable
 set $mode_system "System mode: [l]ock, [s]uspend, [r]eboot, shut[d]own"
 
 bindsym $mod+Shift+p mode $mode_system
-
+/
 mode $mode_system {
     bindsym l exec --no-startup-id $locker;                                           mode default
     bindsym s exec --no-startup-id $locker; exec --no-startup-id systemctl suspend;   mode default
@@ -152,10 +169,7 @@ mode $mode_system {
 # i3 Bindings
 #
 
-# Lock screen
-bindsym $mod+l exec i3lock
-
-# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+## Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
 #
