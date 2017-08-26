@@ -1,0 +1,6 @@
+#
+# i3 Variables
+#
+
+## Lock screen
+set $locker i3lock

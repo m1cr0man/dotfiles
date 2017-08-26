@@ -17,6 +17,7 @@ folders:
 files:
   - path: .config/sway/config
     all:
+      - all_wm/vars_sway
       - all_wm/config
       - all_wm/config_sway
     DryArch:
@@ -26,6 +27,7 @@ files:
 
   - path: .config/i3/config
     all:
+      - all_wm/vars_i3
       - all_wm/config
       - all_wm/config_i3
     DryArch:

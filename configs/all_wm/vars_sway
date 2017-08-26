@@ -1,0 +1,6 @@
+#
+# Sway Variables
+#
+
+## Lock screen
+set $locker swaylock --scaling fill -i ~/.cache/bg
