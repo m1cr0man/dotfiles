@@ -8,6 +8,7 @@
 !.bash_profile
 !.bashrc
 !.tmux.conf
+!.asoundrc
 !.local/bin/bulkrepl
 !.local/bin/sway_d
 !.local/bin/upload
