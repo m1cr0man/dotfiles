@@ -50,3 +50,8 @@ files:
   - path: .tmux.conf
     all:
       - .tmux.conf
+  - path: .asoundrc
+    all:
+      - asoundrc/all
+    PoleStar:
+      - asoundrc/PoleStar
