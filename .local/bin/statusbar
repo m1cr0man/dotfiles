@@ -44,6 +44,7 @@ def get_battery_stats(default_colour):
         charge_current = int(read_file(battery + "/%s_now" % keyword))
         charge_percent = charge_current * 100 / charge_max;
         return ((u"\uf242" if status == "Discharging" else u"\uf1e6"), ("{:0>4.1f}%").format(charge_percent), charge_percent > 5 and default_colour or '#FF0000')
+    return (u"\uf1e6", "100%", default_colour)
 
 def get_network_status():
     devname = subprocess.run("cat /proc/net/wireless | grep -Po '^w[^:]+'", shell=True, stdout=subprocess.PIPE).stdout.strip().decode()

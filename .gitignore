@@ -15,6 +15,7 @@
 !.local/bin/change_bg
 !.local/bin/statusbar
 !.local/bin/set_bg
+!.local/bin/startvpn
 !.config/systemd/user/redshift.service
 !.config/systemd/user/ssh-agent.service
 !.config/systemd/user/dotfiles-update.service

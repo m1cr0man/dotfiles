@@ -206,6 +206,9 @@ exec set_bg i3
 bindsym XF86MonBrightnessDown exec light -U 10
 bindsym XF86MonBrightnessUp exec light -A 10
 
+## Output
+output HDMI-A-1 resolution 1920x1080 position -1920,0
+
 ## Input
 exec setxkbmap -layout ie -model thinkpad
 
