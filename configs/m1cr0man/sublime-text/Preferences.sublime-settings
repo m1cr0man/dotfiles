@@ -2,9 +2,9 @@
 	"color_scheme": "Packages/Monokai Extended/Monokai Extended.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
 	"font_size": 10,
-	"update_check": false,
 	"ignored_packages":
 	[
 		"Vintage"
-	]
+	],
+	"update_check": false
 }

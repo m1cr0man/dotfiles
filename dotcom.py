@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from os import chdir, path, listdir, makedirs, unlink, walk
 from os.path import join as j
 from subprocess import check_output
