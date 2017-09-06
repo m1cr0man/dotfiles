@@ -130,7 +130,6 @@ client.focused #074E2C #074E2C #FFFFFF #074E2C #074E2C
 ## Window workspace allocations
 assign [instance="subl3"] $work1
 assign [instance="Opera"] $work2
-assign [instance="urxvt"] $work3
 assign [instance="pulsevpn"] $work9
 
 ## Floating generic
