@@ -2,64 +2,107 @@
 
 import sys, json, psutil, os, subprocess, time
 
+def print(str):
+    sys.__stdout__.write(str)
+    sys.__stdout__.flush()
+
 def read_file(file):
     contents = ""
     with open(file, 'r') as f:
         contents += f.read().strip()
     return contents
 
-def gen_segment(output, icon, text, colour, bg_colour):
-    # Separator Arrow
-    output.append({
-        "separator": False,
-        "separator_block_width": 0,
-        "full_text": u"\ue0b2",
-        "color": bg_colour
-    })
-    # Lil hack for the background colour of the separator
-    if len(output) > 1:
-        output[-1]["background"] = output[-2]["background"]
+class Segment(object):
+    next_id = 0
+    bg_colours = [
+        os.environ['BGL'],
+        os.environ['BGD']
+    ]
+    default_fg = os.environ['FG']
 
-    # Segment content
-    output.append({
-        "separator": False,
-        "separator_block_width": 0,
-        "full_text": " %s %s " % (icon, text),
-        "color": colour,
-        "background": bg_colour
-    })
+    def __init__(self, icon='', text='', colour=default_fg, visible=True):
+        self.id = self.next_id
+        self.icon = icon
+        self.text = text
+        self.colour = colour
+        self.visible = visible
+        self.bg_colour = self.bg_colours[self.id % len(self.bg_colours)]
 
-def get_battery_stats(default_colour):
-    battery_path = "/sys/class/power_supply/"
-    batteries = [battery_path + f for f in os.listdir(battery_path) if "BAT" in f and not os.path.isfile(battery_path + f)]
+        self.inc_id()
+
+    @classmethod
+    def inc_id(cls):
+        cls.next_id += 1
+
+    def update(self, icon, text, colour=default_fg, visible=True):
+        self.icon = icon
+        self.text = text
+        self.colour = colour
+
+    def generate(self):
+        if not self.visible:
+            return []
+
+        # Separator Arrow + value
+        return [{
+            "separator": False,
+            "separator_block_width": 0,
+            "full_text": u"\ue0b2",
+            "color": self.bg_colour,
+            "background": self.bg_colours[(self.id % len(self.bg_colours)) - 1]
+        },
+        {
+            "separator": False,
+            "separator_block_width": 0,
+            "full_text": " %s %s " % (self.icon, self.text),
+            "color": self.colour,
+            "background": self.bg_colour
+        }]
+
+def get_battery_stats(segment):
+    battery_path = '/sys/class/power_supply/'
+    batteries = [battery_path + f for f in os.listdir(battery_path) if 'BAT' in f and os.path.isdir(battery_path + f)]
+    segment.update(u'\uf1e6', '100%', visible=len(batteries))
 
     for battery in batteries:
         status = read_file(battery + "/status")
-        if status == 'Unknown':
+        if 'charging' not in status.lower():
             continue
+
         keyword = 'charge'
         if os.path.exists(battery + "/energy_full"):
             keyword = 'energy'
+
         charge_max = int(read_file(battery + "/%s_full" % keyword))
         charge_current = int(read_file(battery + "/%s_now" % keyword))
-        charge_percent = charge_current * 100 / charge_max;
-        return ((u"\uf242" if status == "Discharging" else u"\uf1e6"), ("{:0>4.1f}%").format(charge_percent), charge_percent > 5 and default_colour or '#FF0000')
-    return (u"\uf1e6", "100%", default_colour)
+        charge_percent = charge_current * 100 / charge_max
+        segment.update(
+            icon=(u"\uf242" if status == "Discharging" else u"\uf1e6"),
+            text=("{:0>4.1f}%".format(charge_percent))
+        )
+        if charge_percent <= 5:
+            segment.colour = '#FF0000'
 
-def get_network_status():
+def get_network_status(segment):
     devname = subprocess.run("cat /proc/net/wireless | grep -Po '^w[^:]+'", shell=True, stdout=subprocess.PIPE).stdout.strip().decode()
     cmd = subprocess.run("iw dev %s link | grep -Po '(?<=SSID\: ).*'" % devname, shell=True, stdout=subprocess.PIPE)
     connection = str(cmd.stdout.strip().strip())[2:-1]
-    return (u"\uf1eb", connection) if connection else (u"\uf127", "None")
+    segment.update(
+        icon=(u"\uf1eb" if connection else u"\uf127"),
+        text=(connection or 'None')
+    )
 
-def get_sound_status():
+def get_sound_status(segment):
     cmd = subprocess.run("amixer sget Master | grep -Eo [[:digit:]]+%\|\[o[n\|f]+\]", shell=True, stdout=subprocess.PIPE)
     if cmd.returncode:
-        return (u"\uf026", "00%")
+        return segment.update(u"\uf026", "00%")
     data = [l.strip() for l in str(cmd.stdout.strip())[2:-1].split("\\n")]
-    return ((u"\uf026" if data[0] == "0%" or data[1] == "[off]" else u"\uf028"), "{:0>3}".format(data[0]))
+    segment.update(
+        icon=(u"\uf026" if data[0] == "0%" or data[1] == "[off]" else u"\uf028"),
+        text=("{:0>3}".format(data[0]))
+    )
 
-def get_backlight_status():
+def get_backlight_status(segment):
     backlight_path = "/sys/class/backlight/"
     backlights = [backlight_path + f for f in os.listdir(backlight_path) if "backlight" in f and not os.path.isfile(backlight_path + f)]
     redshift_not_running = subprocess.run("pgrep redshift", shell=True, stdout=subprocess.PIPE).returncode
@@ -67,19 +110,32 @@ def get_backlight_status():
     for backlight in backlights:
         actual_brightness = int(read_file(backlight + "/actual_brightness"))
         max_brightness = int(read_file(backlight + "/max_brightness"))
-        return (u"\uf185" + ("" if redshift_not_running else u"\uf06c"), ("{:0>2.0f}%").format(actual_brightness * 100 / max_brightness))
+        segment.update(
+            icon=(u"\uf185" + ("" if redshift_not_running else u"\uf06c")),
+            text=(("{:0>2.0f}%").format(actual_brightness * 100 / max_brightness))
+        )
 
-def print(str):
-    sys.__stdout__.write(str)
-    sys.__stdout__.flush()
+def get_cpu_stats(segment):
+    segment.update(
+        icon=u'\uf0e4',
+        text="{:0>4.1f}%".format(psutil.cpu_percent())
+    )
+
+def get_mem_stats(segment):
+    segment.update(
+        icon=u'\uf233',
+        text="{:0>4.1f}%".format(psutil.virtual_memory().percent)
+    )
+
+def get_clock(segment):
+    ticker = " " if int(time.time()) % 2 else ":"
+    segment.update(
+        icon=u"\uf017",
+        text=time.strftime("%d/%m %I" + ticker + "%M%p")
+    )
 
 def main():
     print("{\"version\": 1, \"custom_workspace\": true}\n[\n[],")
-
-    shade_1_fg = os.environ['FG']
-    shade_1_bg = os.environ['BGL']
-    shade_2_bg = os.environ['BGD']
-    shade_2_fg = os.environ['FG']
 
     # Flashing clock colon
     ticker = ":"
@@ -87,33 +143,32 @@ def main():
     # Initial sleep
     time.sleep(1)
 
+    collectors = [
+        get_network_status,
+        get_mem_stats,
+        get_cpu_stats,
+        get_battery_stats,
+        get_sound_status,
+        get_backlight_status,
+        get_clock
+    ]
+
+    segments = [
+        Segment() for _ in collectors
+    ]
+
     while True:
+        for i, col in enumerate(collectors):
+            col(segments[i])
+
         output = []
-
-        # Elements go here
-        # Current Network
-        gen_segment(output, *get_network_status(), shade_1_fg, shade_1_bg)
-
-        # Memory
-        gen_segment(output, u"\uf233", "{:0>4.1f}%".format(psutil.virtual_memory().percent), shade_2_fg, shade_2_bg)
-
-        # CPU Usage
-        gen_segment(output, u"\uf0e4", "{:0>4.1f}%".format(psutil.cpu_percent()), shade_1_fg, shade_1_bg)
-
-        # Battery
-        gen_segment(output, *get_battery_stats(shade_2_fg), shade_2_bg)
-
-        # Volume
-        gen_segment(output, *get_sound_status(), shade_1_fg, shade_1_bg)
-
-        # Backlight
-        gen_segment(output, *get_backlight_status(), shade_2_fg, shade_2_bg)
-
-        # Clock
-        ticker = " " if ticker == ":" else ":"
-        gen_segment(output, u"\uf017", time.strftime("%d/%m %I" + ticker + "%M%p"), shade_1_fg, shade_1_bg)
+        for segment in segments:
+            output += segment.generate()
 
         print(json.dumps(output, separators=(", ", ": ")) + ",")
         time.sleep(1)
 
 main()
+
+# TODO
+# Fix fact that visble doesn't change colouring
