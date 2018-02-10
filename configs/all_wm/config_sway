@@ -2,6 +2,9 @@
 # Sway Bindings
 #
 
+## Screenshot window
+bindsym $mod+Print exec swaygrab -f
+
 ## Move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
 
