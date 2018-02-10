@@ -5,6 +5,8 @@
 ## Bindings
 bindsym XF86MonBrightnessDown exec light -U 10
 bindsym XF86MonBrightnessUp exec light -A 10
+bindsym $mod+q move workspace to output down
+bindsym $mod+e move workspace to output up
 
 ## Output
 output HDMI-A-1 resolution 1920x1080 position 0,-1080

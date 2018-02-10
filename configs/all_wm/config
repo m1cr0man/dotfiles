@@ -117,10 +117,6 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-## Multi-monitor
-bindsym $mod+q move workspace to output left
-bindsym $mod+e move workspace to output right
-
 #
 # Syling
 #
