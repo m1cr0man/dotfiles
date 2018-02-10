@@ -1,0 +1,2 @@
+read pwd
+echo -n "$pwd" | tr -d '\n' | iconv -t utf16le | openssl md4

@@ -1,0 +1,8 @@
+{
+    "python_bin": "/home/lucas/Github/Demonware/dwlifecycle_api/.tox/test-py36/bin/python3",
+    "python_path": [
+    	"/home/lucas/Github/Demonware/dwlifecycle_api",
+    	"/home/lucas/Github/Demonware/dwlifecycle_api/.tox/test-py36/lib/python3.6/site-packages"
+    ],
+    "disable": ["C0111", "R0903", "R0201"]
+}

@@ -1,0 +1,4 @@
+{
+	"shell_cmd": "npm run build",
+	"working_dir": "$file_path"
+}

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+	echo "Usage: $0 bapi_doc_path"
+	exit 1
+fi
+
+drafter -f json -t ast -u -o benchmarks.api.json "$1"
+
+blueman convert --host='http://localhost:3000' benchmarks.api.json
+
+rm benchmarks.api.json
+
+echo "Done"
