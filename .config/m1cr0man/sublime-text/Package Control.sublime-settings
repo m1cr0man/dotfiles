@@ -5,11 +5,18 @@
 	],
 	"installed_packages":
 	[
+		"A File Icon",
 		"All Autocomplete",
+		"API Blueprint",
+		"Babel",
 		"Better Completion",
+		"Boxy Theme",
 		"ComputerCraft Package",
 		"Diffy",
+		"Dockerfile Syntax Highlighting",
+		"Ecmascript Syntax",
 		"EJS 2",
+		"ESLint",
 		"Find++",
 		"Jinja2",
 		"Markdown Extended",
@@ -17,8 +24,17 @@
 		"Package Control",
 		"Package Syncing",
 		"Pretty JSON",
+		"Puppet",
 		"Pylinter",
+		"RAML Syntax Highlighter",
+		"Random Everything",
+		"RPM Spec Syntax",
 		"SQF Language",
-		"TrailingSpaces"
+		"SublimeCodeIntel",
+		"tern_for_sublime",
+		"TrailingSpaces",
+		"TypeScript",
+		"TypescriptCompletion",
+		"Vuejs Complete Package"
 	]
 }
