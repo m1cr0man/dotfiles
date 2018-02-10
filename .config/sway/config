@@ -124,10 +124,6 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-## Multi-monitor
-bindsym $mod+q move workspace to output left
-bindsym $mod+e move workspace to output right
-
 #
 # Syling
 #
@@ -137,6 +133,7 @@ gaps inner 8
 gaps outer 0
 for_window [class=".*"] border pixel 3
 for_window [title=".*gpicview.*"] border normal 3
+for_window [title="^Skype$"] border pixel 0; floating enable; resize set 288 180; move down 600; move right 820
 client.focused #074E2C #074E2C #FFFFFF #074E2C #074E2C
 
 ## Window workspace allocations
@@ -172,6 +169,9 @@ mode $mode_system {
 #
 # Sway Bindings
 #
+
+## Screenshot window
+bindsym $mod+Print exec swaygrab -f
 
 ## Move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -233,9 +233,11 @@ include /etc/sway/config.d/*
 ## Bindings
 bindsym XF86MonBrightnessDown exec light -U 10
 bindsym XF86MonBrightnessUp exec light -A 10
+bindsym $mod+q move workspace to output down
+bindsym $mod+e move workspace to output up
 
 ## Output
-output HDMI-A-1 resolution 1920x1080 position -1920,0
+output HDMI-A-1 resolution 1920x1080 position 0,-1080
 
 ## Input
 exec setxkbmap -layout ie -model thinkpad

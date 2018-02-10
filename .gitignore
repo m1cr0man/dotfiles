@@ -1,5 +1,4 @@
 *
-!*/
 !.gitignore
 !.config/sway/config
 !.config/i3/config
@@ -12,12 +11,16 @@
 !.local/bin/bulkrepl
 !.local/bin/sway_d
 !.local/bin/upload
-!.local/bin/change_bg
-!.local/bin/statusbar
 !.local/bin/set_bg
+!.local/bin/statusbar
 !.local/bin/startvpn
 !.local/bin/upload_bg
 !.local/bin/ssh-refresh
+!.local/bin/gen_postman_docs
+!.local/bin/hello_mike
+!.local/bin/mschap_hash
+!.local/bin/mysql
+!.local/bin/uptime_to_date
 !.config/systemd/user/redshift.service
 !.config/systemd/user/ssh-agent.service
 !.config/systemd/user/dotfiles-update.service
@@ -39,6 +42,14 @@
 !.config/m1cr0man/sublime-text/PythonKattis.sublime-build
 !.config/m1cr0man/sublime-text/SQF.sublime-settings
 !.config/m1cr0man/sublime-text/SublimeLinter.sublime-settings
+!.config/m1cr0man/sublime-text/APIBlueprint.sublime-settings
+!.config/m1cr0man/sublime-text/Markdown Extended.sublime-settings
+!.config/m1cr0man/sublime-text/Markdown.sublime-settings
+!.config/m1cr0man/sublime-text/Pylinter.sublime-settings
+!.config/m1cr0man/sublime-text/Tern.sublime-settings
+!.config/m1cr0man/sublime-text/trailing_spaces.sublime-settings
+!.config/m1cr0man/sublime-text/node.sublime-build
+!.config/m1cr0man/sublime-text/Monokai Boxy.tmTheme
 !.config/m1cr0man/sublime-text/SublimeLinter/Amy (SL).tmTheme
 !.config/m1cr0man/sublime-text/SublimeLinter/Monokai (SL).tmTheme
 !.config/m1cr0man/sublime-text/SublimeLinter/Monokai Extended (SL).tmTheme
