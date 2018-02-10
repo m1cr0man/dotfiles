@@ -112,6 +112,10 @@ def assemble_host(git, repo_dir, host, files, folders):
     git('checkout master')
 
 def main():
+    if len(argv) < 2:
+        print('Usage: {} build_yaml'.format(argv[0]))
+        exit(1)
+
     config = read_config(argv[1])
 
     git, repo_dir = setup_git()
