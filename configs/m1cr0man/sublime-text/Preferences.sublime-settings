@@ -1,10 +1,26 @@
 {
-	"color_scheme": "Packages/Monokai Extended/Monokai Extended.tmTheme",
+	"auto_complete_triggers":
+	[
+		{
+			"characters": "<",
+			"selector": "text.html"
+		},
+		{
+			"characters": ".",
+			"selector": "source.js"
+		}
+	],
+	"color_scheme": "Packages/User/Monokai Boxy.tmTheme",
+	"enable_inline_error_tips": true,
 	"ensure_newline_at_eof_on_save": true,
 	"font_size": 10,
 	"ignored_packages":
 	[
+		"All Autocomplete",
+		"Better Completion",
 		"Vintage"
 	],
+	"show_definitions": false,
+	"theme": "Boxy Tomorrow.sublime-theme",
 	"update_check": false
 }

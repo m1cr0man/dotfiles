@@ -30,6 +30,7 @@ alias sshipfwd='ssh -Ni ~/.ssh/id_rsa_irishpressings -L 27017:127.0.0.1:27017 gi
 alias ls='ls --color=auto'
 alias l='ls'
 alias c='cd'
+alias cb='xclip -selection clipboard'
 alias exporteslint='export PATH=$PATH:/home/lucas/Github/vacation/client/node_modules/.bin'
 alias chkgpu='sudo cat /sys/kernel/debug/vgaswitcheroo/switch'
 alias py='python3'

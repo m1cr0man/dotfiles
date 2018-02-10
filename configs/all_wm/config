@@ -130,6 +130,7 @@ gaps inner 8
 gaps outer 0
 for_window [class=".*"] border pixel 3
 for_window [title=".*gpicview.*"] border normal 3
+for_window [title="^Skype$"] border pixel 0; floating enable; resize set 288 180; move down 600; move right 820
 client.focused #074E2C #074E2C #FFFFFF #074E2C #074E2C
 
 ## Window workspace allocations
