@@ -6,7 +6,10 @@
 set $mod Mod4
 
 ## Terminal
-set $term urxvt
+set $term urxvtc
+
+## Daemonise uRXVT
+exec urxvtd -q -f -o
 
 ## Launcher
 set $launcher dmenu_run
