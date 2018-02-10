@@ -19,6 +19,8 @@ git clone -b $(hostname) https://github.com/m1cr0man/dotfiles.git ~/
 - Python 3
 - PyYAML
 
+Push your changes to remote master, then run:
+
 ```bash
 ./dotcom.py configs/dotfiles.yaml
 ```
