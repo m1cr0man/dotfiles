@@ -99,7 +99,7 @@ def assemble_host(git, repo_dir, host, files, folders):
 
     # Build the gitignore file
     with open(j(repo_dir, '.gitignore'), 'w') as ignore_f:
-        ignore_f.write('*\n!*/\n!.gitignore\n')
+        ignore_f.write('*\n!.gitignore\n')
         for file in files + folder_files:
             ignore_f.write('!%s\n' % file['path'])
 
