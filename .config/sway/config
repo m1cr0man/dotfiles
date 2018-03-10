@@ -245,3 +245,6 @@ output HDMI-A-1 resolution 1920x1080 position 0,-1080
 ## Input
 exec setxkbmap -layout ie -model thinkpad
 
+## Output
+output HDMI-A-1 resolution 1920x1080 position 0,-1080
+

@@ -1,5 +1,7 @@
 ! Appearance
 URxvt.depth: 32
+URxvt.transparent: true
+URxvt.shading: 20
 URxvt.background: [85]#0C1411
 URxvt.foreground: [100]#ffffff
 URxvt.font: -*-tamzenforpowerline-medium-r-*-*-14-*-*-*-*-*-*-*
@@ -9,6 +11,15 @@ URxvt.borderless: true
 URxvt*scrollBar: false
 URxvt*skipBuiltinGlyphs: false
 URxvt*mouseWheelScrollPage: true
+
+! Font Rendering
+Xft.dpi: 96
+Xft.antialias: 1
+Xft.autohint: 1
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
 
 ! Extensions
 URxvt*perl-ext-common: default,matcher,selection-to-clipboard

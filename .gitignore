@@ -11,8 +11,10 @@
 !.local/bin/bulkrepl
 !.local/bin/sway_d
 !.local/bin/upload
+!.local/bin/i3lock
 !.local/bin/set_bg
 !.local/bin/statusbar
+!.local/bin/opera
 !.local/bin/startvpn
 !.local/bin/upload_bg
 !.local/bin/ssh-refresh
