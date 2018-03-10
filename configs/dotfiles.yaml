@@ -24,6 +24,7 @@ files:
       - all_wm/config_DryArch
     PoleStar:
       - all_wm/config_PoleStar
+      - all_wm/config_PoleStar_sway
 
   - path: .config/i3/config
     all:
@@ -34,6 +35,7 @@ files:
       - all_wm/config_DryArch
     PoleStar:
       - all_wm/config_PoleStar
+      - all_wm/config_PoleStar_i3
 
   - path: .Xresources
     all:
