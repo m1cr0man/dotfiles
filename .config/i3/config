@@ -74,10 +74,6 @@ bindsym XF86AudioRaiseVolume exec amixer set Master playback 1+
 bindsym XF86AudioLowerVolume exec amixer set Master playback 1-
 bindsym XF86AudioMute exec amixer set Master toggle
 
-## Brightness fine control
-bindsym Control+Alt+left exec light -U 2
-bindsym Control+Alt+right exec light -A 2
-
 ## Exit
 bindsym $mod+Shift+x exit
 
@@ -159,7 +155,7 @@ for_window [title="Preferences$"]      floating enable
 set $mode_system "System mode: [l]ock, [s]uspend, [r]eboot, shut[d]own"
 
 bindsym $mod+Shift+p mode $mode_system
-/
+
 mode $mode_system {
     bindsym l exec --no-startup-id $locker;                                           mode default
     bindsym s exec --no-startup-id $locker; exec --no-startup-id systemctl suspend;   mode default
