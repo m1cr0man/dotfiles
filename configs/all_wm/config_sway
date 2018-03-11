@@ -2,6 +2,10 @@
 # Sway Bindings
 #
 
+## Brightness fine control
+bindsym Control+Alt+left exec light -U 2
+bindsym Control+Alt+right exec light -A 2
+
 ## Screenshot window
 bindsym $mod+Print exec swaygrab -f
 
