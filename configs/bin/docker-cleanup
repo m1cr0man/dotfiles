@@ -1,0 +1,5 @@
+echo "Deleting unused volumes"
+docker volume rm $(docker volume ls -qf dangling=true)
+echo "Deleting unused images"
+docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+docker rmi $(docker images | grep "none" | awk '/ / { print $3 }')

@@ -1,5 +1,5 @@
 #!/bin/sh
-ssh-keygen -f ~/.ssh/known_hosts -R $1
-ssh-keygen -f ~/.ssh/known_hosts -R $(getent hosts $1 | grep -Eo '[0-9.]{8,}')
+for h in $*; do ssh-keygen -f ~/.ssh/known_hosts -R $h; done
+for ip in $(getent hosts $* | grep -Eo '[0-9.]{8,}'); do ssh-keygen -f ~/.ssh/known_hosts -R $ip; done
 
-ssh-keyscan $1 >> ~/.ssh/known_hosts
+ssh-keyscan $* >> ~/.ssh/known_hosts

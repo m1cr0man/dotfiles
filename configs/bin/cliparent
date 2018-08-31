@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+consort -D las search inventory host query="parent = $1" ${@:2}

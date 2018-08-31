@@ -1,2 +1,5 @@
 ## Output
-exec xrandr --output DP-2-2 --mode 1920x1080 --pos 0x0 --rotate normal --output eDP-1 --primary --mode 1920x1080 --pos 0x1080 --rotate normal
+exec xrandr --output DP2-2 --mode 1920x1080 --pos 0x0 --rotate normal --output eDP1 --primary --mode 1920x1080 --pos 0x1080 --rotate normal
+
+## Daemonise uRXVT (after output setting so transparency works)
+exec sleep 2 && urxvtd -q -f -o

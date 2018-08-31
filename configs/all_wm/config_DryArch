@@ -4,3 +4,6 @@
 
 ## Input
 exec setxkbmap -layout ie -model acer_laptop
+
+## Daemonise uRXVT (after output setting so transparency works)
+exec sleep 2 && urxvtd -q -f -o

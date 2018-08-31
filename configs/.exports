@@ -1,0 +1,17 @@
+#!/bin/sh
+
+export PATH=~/.local/bin:~/go/bin:$PATH
+
+# SSH Agent socket
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+# My Colours
+export FG='#ACBAB3'
+export BGL='#074E2C'
+export BGD='#02150C'
+
+export TMBGD='colour234'
+export TMBGL='colour239'
+
+# Secrets
+[[ -e ~/.secrets ]] && . ~/.secrets

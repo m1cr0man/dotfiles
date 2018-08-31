@@ -2,7 +2,7 @@
 Description=Redshift eye saver
 
 [Service]
-ExecStart=/usr/bin/redshift -m wayland
+ExecStart=/usr/bin/redshift
 Restart=always
 TimeoutSec=60
 

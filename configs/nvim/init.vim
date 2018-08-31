@@ -4,6 +4,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'airblade/vim-gitgutter'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'harish2704/MatchTag'
+Plug 'junegunn/rainbow_parentheses.vim'
 
 call plug#end()
 
@@ -54,4 +55,7 @@ function Spacetab(size)
 	execute "set shiftwidth=".a:size
 	set expandtab
 	retab
-endfunction
+end
+
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
+autocmd FileType * RainbowParenthesesfunction

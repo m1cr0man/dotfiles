@@ -2,8 +2,18 @@
 # i3 Bindings
 #
 
+## Brightness fine control
+bindsym Control+Mod1+Left exec light -U 2
+bindsym Control+Mod1+Right exec light -A 2
+
 ## Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
+## Take a screenshot of current window
+bindsym $mod+Print exec scrot -u
+
+## Take a screenshot of desktop
+bindsym $mod+Shift+Print exec scrot
 
 #
 # i3 Styling

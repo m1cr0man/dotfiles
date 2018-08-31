@@ -14,13 +14,11 @@ exitcolour() {
 #PS1="\[\e[48;5;\$(exitcolour \$?)m\]\$? \[\e[38;5;\$(exitcolour \$?)m\e[48;5;239m\]\[\e[38;5;255m\] \W \[\e[0m\e[38;5;239m\]\$(tput sgr0) "
 PS1='$?|\W> '
 
-export PATH=~/.local/bin:$PATH
+# Exports
+. ~/.exports
 
 # Git auto complete
 source /usr/share/git/completion/git-completion.bash
-
-# SSH Agent socket
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # Aliases
 alias mymount='sudo mount -o uid=1000,gid=1000'
@@ -36,20 +34,16 @@ alias chkgpu='sudo cat /sys/kernel/debug/vgaswitcheroo/switch'
 alias py='python3'
 alias py3='python3'
 alias py2='python2.7'
+alias diffnice='diff -Naur'
 
-# My Colours
-export FG='#ACBAB3'
-export BGL='#074E2C'
-export BGD='#02150C'
-
-export TMBGD='colour234'
-export TMBGL='colour239'
+# Consort aliases
+alias conlas='consort -D las'
+alias contat='consort -D tat'
+alias clih='consort -D las show inventory host'
+alias clis='consort -D las show inventory settings'
 
 # LS Colours
 eval $(dircolors -b "$HOME/.config/m1cr0man/LS_COLOURS")
-
-# Secrets
-[[ -e ~/.secrets ]] && . ~/.secrets
 
 # TMux
 [[ $TERM == 'rxvt'* ]] && exec tmux
