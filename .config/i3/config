@@ -15,9 +15,6 @@ set $mod Mod4
 ## Terminal
 set $term urxvtc
 
-## Daemonise uRXVT
-exec urxvtd -q -f -o
-
 ## Launcher
 set $launcher dmenu_run
 
@@ -87,7 +84,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+d exec $launcher
 
 ## Open browser
-bindsym $mod+Backspace exec $browser
+bindsym $mod+BackSpace exec $browser
 bindsym XF86Search exec $browser https://www.google.ie/
 
 ## Open editor
@@ -169,8 +166,18 @@ mode $mode_system {
 # i3 Bindings
 #
 
+## Brightness fine control
+bindsym Control+Mod1+Left exec light -U 2
+bindsym Control+Mod1+Right exec light -A 2
+
 ## Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
+## Take a screenshot of current window
+bindsym $mod+Print exec scrot -u
+
+## Take a screenshot of desktop
+bindsym $mod+Shift+Print exec scrot
 
 #
 # i3 Styling
@@ -212,5 +219,8 @@ bindsym $mod+e move workspace to output up
 exec setxkbmap -layout ie -model thinkpad
 
 ## Output
-exec xrandr --output DP-2-2 --mode 1920x1080 --pos 0x0 --rotate normal --output eDP-1 --primary --mode 1920x1080 --pos 0x1080 --rotate normal
+exec xrandr --output DP2-2 --mode 1920x1080 --pos 0x0 --rotate normal --output eDP1 --primary --mode 1920x1080 --pos 0x1080 --rotate normal
+
+## Daemonise uRXVT (after output setting so transparency works)
+exec sleep 2 && urxvtd -q -f -o
 
