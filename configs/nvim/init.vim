@@ -55,7 +55,7 @@ function Spacetab(size)
 	execute "set shiftwidth=".a:size
 	set expandtab
 	retab
-end
+endfunction
 
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
-autocmd FileType * RainbowParenthesesfunction
+autocmd FileType * RainbowParentheses
