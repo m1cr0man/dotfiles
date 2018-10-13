@@ -23,6 +23,12 @@
 !.local/bin/mschap_hash
 !.local/bin/mysql
 !.local/bin/uptime_to_date
+!.local/bin/cliparent
+!.local/bin/colortest
+!.local/bin/dock
+!.local/bin/undock
+!.local/bin/docker-cleanup
+!.local/bin/restart_urxvt
 !.config/systemd/user/redshift.service
 !.config/systemd/user/ssh-agent.service
 !.config/systemd/user/dotfiles-update.service

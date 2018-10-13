@@ -15,9 +15,6 @@ set $mod Mod4
 ## Terminal
 set $term urxvtc
 
-## Daemonise uRXVT
-exec urxvtd -q -f -o
-
 ## Launcher
 set $launcher dmenu_run
 
@@ -87,7 +84,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+d exec $launcher
 
 ## Open browser
-bindsym $mod+Backspace exec $browser
+bindsym $mod+BackSpace exec $browser
 bindsym XF86Search exec $browser https://www.google.ie/
 
 ## Open editor
@@ -235,4 +232,7 @@ include /etc/sway/config.d/*
 
 ## Input
 exec setxkbmap -layout ie -model acer_laptop
+
+## Daemonise uRXVT (after output setting so transparency works)
+exec sleep 2 && urxvtd -q -f -o
 
